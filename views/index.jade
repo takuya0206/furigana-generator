@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  form(method="post", action="/generate")
+    div
+      p ふりがなをつけたい文章
+      textarea("name=text")
+
+    button(type="submit") 送信
