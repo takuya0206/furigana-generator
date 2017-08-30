@@ -5,6 +5,9 @@ block content
   form(method="post", action="/generate")
     div
       p ふりがなをつけたい文章
-      textarea("name=text")
+      textarea(name="sentence")
 
     button(type="submit") 送信
+  div
+    p 結果
+    textarea(id="result") #{result}
