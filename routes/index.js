@@ -15,8 +15,9 @@ router.get('/', (req, res, next) => {
   });
 });
 
-// 送信するデータを生成
+
 router.post('/generate', (req, res, next) => {
+  // 送信するデータを生成
   let options = {
     url: config.API_URL,
     headers: {
@@ -56,12 +57,13 @@ router.post('/generate', (req, res, next) => {
    };
  };
 });
-console.log('Requestの中 => ' + data.rubySentence);
-
   });
-  // ここがうまく動かない？
-  console.log('Requestの外 => ' + data.rubySentence);
-  res.redirect('/');
+  let wait = setInterval (() => {
+    if (data.rubySentence !== null) {
+      clearInterval(wait);
+      res.redirect('/');
+    }
+  }, 300);
 });
 
 module.exports = router;
