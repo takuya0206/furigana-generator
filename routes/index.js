@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/generate', (req, res, next) => {
+  data.rubySentence = '';
   if (req.body.sentence.length > 500) {return;}
   // 送信するデータを生成
   let options = {
@@ -69,7 +70,6 @@ router.post('/generate', (req, res, next) => {
     if (data.rubySentence !== '') {
       clearInterval(wait);
       console.log("リクエストの後 => " + data.rubySentence);
-      data.rubySentence = '';
       res.redirect('/');
     }
   }, 500);
