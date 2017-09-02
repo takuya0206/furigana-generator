@@ -1,0 +1,8 @@
+{
+  "name": "secret-board",
+  "description": "振り仮名ジェネレーター ",
+  "repository": "https://github.com/takuya0206/furigana-generator",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}
