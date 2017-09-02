@@ -32,8 +32,9 @@ router.post('/generate', (req, res, next) => {
   request.post(options, (error, res, body) => {
     let word, subword, katakana = '';
     xml2js.parseString(body, (err, callback) => {
+      //エラー（入力が空白）
       if (callback.hasOwnProperty('Error')) {
-        data.rubySentence += callback.Error.Message;
+        data.rubySentence += "入力が適切ではありません";
       } else {
       for (let i = 0, len = callback.ResultSet.Result[0].WordList[0].Word.length; i < len; i++) {
        word = callback.ResultSet.Result[0].WordList[0].Word[i];
