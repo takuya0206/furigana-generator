@@ -30,6 +30,7 @@ router.post('/generate', (req, res, next) => {
   };
   // apiにリクエストを送り、callbackを処理
   request.post(options, (error, res, body) => {
+    console.log("リクエストの前");
     let word, subword, katakana = '';
     data.rubySentence = '';
     xml2js.parseString(body, (err, callback) => {
@@ -67,6 +68,7 @@ router.post('/generate', (req, res, next) => {
   });
   let wait = setInterval (() => {
     if (data.rubySentence !== '') {
+      console.log("リクエストの後");
       clearInterval(wait);
       res.redirect('/');
     }
