@@ -11,3 +11,10 @@ textarea {
   width: 400px;
   height: 80px;
 }
+
+#frame {
+  margin-top: 20px;
+  width: 400px;
+  padding: 2px;
+}
+
