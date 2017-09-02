@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/generate', (req, res, next) => {
   data.rubySentence = '';
-  if (req.body.sentence.length > 500) {return;}
+  if (req.body.sentence.length > 500 || req.body.sentence.length === 0) {return;}
   // 送信するデータを生成
   let options = {
     url: config.API_URL,
@@ -31,7 +31,6 @@ router.post('/generate', (req, res, next) => {
   };
   // apiにリクエストを送り、callbackを処理
   request.post(options, (error, res, body) => {
-    console.log("リクエストの前");
     let word, subword, katakana = '';
     xml2js.parseString(body, (err, callback) => {
       for (let i = 0, len = callback.ResultSet.Result[0].WordList[0].Word.length; i < len; i++) {
@@ -69,7 +68,6 @@ router.post('/generate', (req, res, next) => {
   wait = setInterval (() => {
     if (data.rubySentence !== '') {
       clearInterval(wait);
-      console.log("リクエストの後 => " + data.rubySentence);
       res.redirect('/');
     }
   }, 250);
