@@ -1,3 +1,4 @@
+
 [    0.0000 Intiizingcgup susys cpuset
 [    0.0000] Inialzinggrup ubsys cu
 [    0.000000] Initializing cgroup subsys cpuacct
@@ -61,7 +62,9 @@
 [    0.000000] IOAPIC[0]: apic_id 2, verio17, address 0xfec00000, GSI0-
 [   .00000]ACI:INSROVR bus 0 buirq  gbal_rq dfldf
 [   0000] CPI: NTSRC_OVR (bus 0 bus_irq 9 global_irq 9 ig lvel)
-[  0000000] UinACPI(MT)foSM conigraio ifomatin[    0.000000]mpoot:Alwing  CUs 0 hopl CPUs[  0.0000 P: Regiser nosa mory: [em0x0000-0x000ff]
+[  0000000] UinACPI(MT)foSM conigraio ifomatin
+[    0.000000]mpoot:Alwing  CUs 0 hopl CPUs
+[  0.0000 P: Regiser nosa mory: [em0x0000-0x000ff]
 [    0.000000] PM: Registered nosave memory: [mem x0009f000-0x0009ffff]
 [    0.00000] PM: Registerd nosae memory: [mem 0x000a0000-0x000effff]
 [    00000] P Rgistered nosave mmo: [mem 0x000f0000-0x000fff]
@@ -620,7 +623,8 @@ Welcome to [1mUbuntu 16.04.3 LTS[0m!
 [   27.335357] cloud-init[1311]: Cloud-init v. 0.7.9 finished at Tue, 29 Aug 2017 07:57:10 +0000. Datasource DataSourceNoCloud [seed=/dev/sdb][dsmode=net].  Up 27.26 seconds
 [[0;32m  OK  [0m] Started Execute cloud user/final scripts.
 [[0;32m  OK  [0m] Reached target Cloud-init target.
-
+
+
 Ubuntu 16.04.3 LTS ubuntu-xenial ttyS0
 
 ubuntu-xenial login:          Stopping Session 13 of user ubuntu.
