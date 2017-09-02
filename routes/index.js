@@ -72,7 +72,7 @@ router.post('/generate', (req, res, next) => {
       console.log("リクエストの後 => " + data.rubySentence);
       res.redirect('/');
     }
-  }, 500);
+  }, 250);
 });
 
 module.exports = router;
