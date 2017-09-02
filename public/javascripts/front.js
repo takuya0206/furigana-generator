@@ -7,7 +7,11 @@ const frame = document.getElementById('frame');
 
 sentence.addEventListener('input', () => {
   let restNum = 500 - sentence.value.length
-  guide.textContent = 'ふりがなをつけたい文章（残り' + restNum + '字)';
+  if (sentence.value.length > 500) {
+    guide.textContent = "※文字数が多すぎます！"
+  } else {
+    guide.textContent = 'ふりがなをつけたい文章（残り' + restNum + '字)';
+  }
 });
 
 showExample.addEventListener('click', () => {

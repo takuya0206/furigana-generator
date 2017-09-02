@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/generate', (req, res, next) => {
+  if (req.body.sentence.length > 500) {return;}
   // 送信するデータを生成
   let options = {
     url: config.API_URL,
