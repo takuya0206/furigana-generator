@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config');
+const config = require('../config.json');
 const request = require('request');
 const xml2js = require('xml2js');
 const ruby = ['<ruby>','<rt>','</rt></ruby>'];
