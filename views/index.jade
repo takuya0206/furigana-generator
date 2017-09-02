@@ -2,12 +2,14 @@ extends layout
 
 block content
   h1= title
-  form(method="post", action="/generate")
+  form(name="generator", method="post", action="/generate")
     div
-      p ふりがなをつけたい文章
+      p(id="guide") ふりがなをつけたい文章（残り500字）
       textarea(name="sentence")
 
     button(type="submit") 送信
   div
     p 結果
     textarea(id="result") #{result}
+
+  script(src="/javascripts/front.js")

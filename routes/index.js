@@ -59,11 +59,11 @@ router.post('/generate', (req, res, next) => {
 });
   });
   let wait = setInterval (() => {
-    if (data.rubySentence !== null) {
+    if (data.rubySentence !== '') {
       clearInterval(wait);
       res.redirect('/');
     }
-  }, 300);
+  }, 500);
 });
 
 module.exports = router;
