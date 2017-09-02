@@ -32,7 +32,6 @@ router.post('/generate', (req, res, next) => {
   request.post(options, (error, res, body) => {
     console.log("リクエストの前");
     let word, subword, katakana = '';
-    data.rubySentence = '';
     xml2js.parseString(body, (err, callback) => {
       for (let i = 0, len = callback.ResultSet.Result[0].WordList[0].Word.length; i < len; i++) {
        word = callback.ResultSet.Result[0].WordList[0].Word[i];
@@ -70,6 +69,7 @@ router.post('/generate', (req, res, next) => {
     if (data.rubySentence !== '') {
       clearInterval(wait);
       console.log("リクエストの後 => " + data.rubySentence);
+      data.rubySentence = '';
       res.redirect('/');
     }
   }, 500);
