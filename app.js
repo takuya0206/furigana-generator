@@ -13,6 +13,9 @@ var config = require('./config');
 var app = express();
 app.use(helmet());
 
+// Heroku
+app.set('port', (process.env.PORT || 8000));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
