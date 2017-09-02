@@ -66,10 +66,10 @@ router.post('/generate', (req, res, next) => {
 };
 });
   });
-  let wait = setInterval (() => {
+  wait = setInterval (() => {
     if (data.rubySentence !== '') {
-      console.log("リクエストの後");
       clearInterval(wait);
+      console.log("リクエストの後 => " + data.rubySentence);
       res.redirect('/');
     }
   }, 500);
