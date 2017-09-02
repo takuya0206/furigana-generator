@@ -29,35 +29,39 @@ router.post('/generate', (req, res, next) => {
   };
   // apiにリクエストを送り、callbackを処理
   request.post(options, (error, res, body) => {
-    let word, subword = '';
+    let word, subword, katakana = '';
     data.rubySentence = '';
     xml2js.parseString(body, (err, callback) => {
       for (let i = 0, len = callback.ResultSet.Result[0].WordList[0].Word.length; i < len; i++) {
        word = callback.ResultSet.Result[0].WordList[0].Word[i];
+       katakana = word.Surface.toString();
        // 数字やローマ字の場合
        if (!word.hasOwnProperty('Furigana')) {
-          data.rubySentence += word.Surface;
-        };
-       // 助詞などのひらがなをスキップ
-       if (word.hasOwnProperty('Furigana') && word.Furigana[0] == word.Surface[0]) {
         data.rubySentence += word.Surface;
-      };
+      }
+       // 助詞などのひらがなをスキップ
+       else if (word.hasOwnProperty('Furigana') && word.Furigana[0] == word.Surface[0]) {
+        data.rubySentence += word.Surface;
+      }
        // SubWord(=送り仮名)がある場合
-       if (word.hasOwnProperty('SubWordList')) {
+       else if (word.hasOwnProperty('SubWordList')) {
         for (let j = 0, len2 = word.SubWordList[0].SubWord.length; j < len2; j++) {
           subword = word.SubWordList[0].SubWord[j];
           if (subword.Furigana[0] == subword.Surface[0]) {
             data.rubySentence += subword.Surface;
-        } else {
-         data.rubySentence += ruby[0] + subword.Surface + ruby[1] + subword.Furigana + ruby[2];
+          } else {
+           data.rubySentence += ruby[0] + subword.Surface + ruby[1] + subword.Furigana + ruby[2];
+         };
        };
-     };
-   };
-      // 漢字だけの場合
-      if (word.hasOwnProperty('Furigana') && word.Furigana[0] !== word.Surface[0]) {
-       data.rubySentence += ruby[0] + word.Surface + ruby[1] + word.Furigana + ruby[2];
-     };
-   };
+     }
+   // カタカナの場合
+   else if (katakana.match(/^[\u30A0-\u30FF]+$/)) {
+    data.rubySentence += word.Surface;
+  }
+  else {
+   data.rubySentence += ruby[0] + word.Surface + ruby[1] + word.Furigana + ruby[2];
+ };
+};
 });
   });
   let wait = setInterval (() => {
