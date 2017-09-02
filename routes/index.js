@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/generate', (req, res, next) => {
   data.rubySentence = '';
-  if (req.body.sentence.length > 500 || req.body.sentence.length === 0) {return;}
   // 送信するデータを生成
   let options = {
     url: config.API_URL,
@@ -33,6 +32,9 @@ router.post('/generate', (req, res, next) => {
   request.post(options, (error, res, body) => {
     let word, subword, katakana = '';
     xml2js.parseString(body, (err, callback) => {
+      if (callback.hasOwnProperty('Error')) {
+        data.rubySentence += callback.Error.Message;
+      } else {
       for (let i = 0, len = callback.ResultSet.Result[0].WordList[0].Word.length; i < len; i++) {
        word = callback.ResultSet.Result[0].WordList[0].Word[i];
        katakana = word.Surface.toString();
@@ -62,6 +64,7 @@ router.post('/generate', (req, res, next) => {
   else {
    data.rubySentence += ruby[0] + word.Surface + ruby[1] + word.Furigana + ruby[2];
  };
+};
 };
 });
   });

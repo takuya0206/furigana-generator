@@ -9,7 +9,13 @@ sentence.addEventListener('input', () => {
   let restNum = 500 - sentence.value.length
   if (sentence.value.length > 500) {
     guide.textContent = "※文字数が多すぎます！"
-  } else {
+    generator.elements[1].disabled = true;
+  };
+  if (sentence.value.length > 0 && sentence.value.length <= 500) {
+    guide.textContent = 'ふりがなをつけたい文章（残り' + restNum + '字)';
+    generator.elements[1].disabled = false;
+  };
+  if (sentence.value.length === 0) {
     guide.textContent = 'ふりがなをつけたい文章（残り' + restNum + '字)';
   }
 });
